@@ -67,7 +67,7 @@ function Index() {
           <div className="flex items-center gap-5">
             <div className="hidden items-center gap-2 md:flex">
               <Phone className="h-4 w-4 text-navy" />
-              <div className="leading-tight"><div className="text-sm font-bold text-navy">+237 222 23 44 55</div><div className="text-[10px] text-muted-foreground">Lun - Dim 24h/24</div></div>
+              <div className="leading-tight"><div className="text-sm font-bold text-navy">+237 652 467 154</div><div className="text-[10px] text-muted-foreground">Lun - Dim 24h/24</div></div>
             </div>
             <a href="#rdv" className="flex items-center gap-2 rounded-lg bg-navy px-5 py-3 text-sm font-semibold text-navy-foreground"><CalendarDays className="h-4 w-4" />Prendre RDV</a>
           </div>
@@ -111,9 +111,9 @@ function Index() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 overflow-x-auto px-6 py-4 text-sm font-semibold">
           <ChevronLeft className="h-4 w-4 shrink-0" />
           <span className="flex shrink-0 items-center gap-2"><Clock className="h-4 w-4" />Urgences 24h/24 et 7j/7</span>
-          <span className="flex shrink-0 items-center gap-2"><Phone className="h-4 w-4" />+237 222 23 44 55</span>
-          <span className="flex shrink-0 items-center gap-2"><MapPin className="h-4 w-4" />Avenue Ahmadou Ahidjo, Yaoundé</span>
-          <span className="flex shrink-0 items-center gap-2"><MessageCircle className="h-4 w-4" />Écrivez-nous sur WhatsApp</span>
+          <span className="flex shrink-0 items-center gap-2"><Phone className="h-4 w-4" />+237 652 467 154 / +237 686 204 678</span>
+          <span className="flex shrink-0 items-center gap-2"><MapPin className="h-4 w-4" />Carrefour TKC, Entrée Prodige, Biyem-Assi</span>
+          <a href="https://wa.me/237686204678" target="_blank" rel="noreferrer" className="flex shrink-0 items-center gap-2"><MessageCircle className="h-4 w-4" />Écrivez-nous sur WhatsApp</a>
           <ChevronRight className="h-4 w-4 shrink-0" />
         </div>
       </div>
@@ -225,15 +225,15 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 pb-14">
         <div className="flex items-end justify-between">
           <div><h2 className="text-3xl font-extrabold text-navy">Nous trouver à Yaoundé</h2><p className="mt-1 text-sm text-muted-foreground">Un accès facile, en plein cœur de la ville.</p></div>
-          <a href="https://maps.google.com/?q=Avenue+Ahmadou+Ahidjo+Yaoundé" target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-lg border border-navy/30 px-4 py-2 text-xs font-semibold text-navy md:flex">Obtenir l'itinéraire<ArrowRight className="h-3 w-3" /></a>
+          <a href="https://maps.google.com/?q=Carrefour+TKC+Biyem-Assi+Yaoundé" target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-lg border border-navy/30 px-4 py-2 text-xs font-semibold text-navy md:flex">Obtenir l'itinéraire<ArrowRight className="h-3 w-3" /></a>
         </div>
         <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr]">
           <div className="relative h-80 overflow-hidden rounded-xl border">
-            <iframe title="Carte" className="h-full w-full" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=11.49%2C3.85%2C11.53%2C3.88&layer=mapnik&marker=3.866%2C11.516" />
+            <iframe title="Carte" className="h-full w-full" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=11.465%2C3.815%2C11.505%2C3.845&layer=mapnik&marker=3.830%2C11.485" />
             <Maximize2 className="absolute right-3 top-3 h-8 w-8 rounded bg-background p-2 text-navy shadow" />
           </div>
           <div className="space-y-3">
-            {[{ i: MapPin, t: "Adresse", a: "Avenue Ahmadou Ahidjo", b: "Yaoundé, Cameroun" }, { i: Phone, t: "Téléphone", a: "+237 222 23 44 55", b: "Lun - Dim 24h/24" }, { i: MessageCircle, t: "WhatsApp", a: "+237 6 98 12 34 56", b: "Réponse rapide" }, { i: Mail, t: "Email", a: "contact@solumed.cm", b: "Nous vous répondons sous 24h" }].map(({ i: I, t, a, b }) => (
+            {[{ i: MapPin, t: "Adresse", a: "Carrefour TKC, Entrée Prodige", b: "100m du goudron, Biyem-Assi, Yaoundé" }, { i: Phone, t: "Téléphone", a: "+237 652 467 154 / +237 686 204 678", b: "Urgences 24h/24 — Consultations 7h00 - 20h00" }, { i: MessageCircle, t: "WhatsApp", a: "+237 686 204 678", b: "Réponse rapide garantie" }, { i: Mail, t: "Email", a: "contact@solumed.cm", b: "Nous vous répondons sous 24h" }].map(({ i: I, t, a, b }) => (
               <div key={t} className="flex items-start gap-3 rounded-xl border bg-card p-3"><div className="grid h-9 w-9 place-items-center rounded-lg bg-brand-green"><I className="h-4 w-4 text-navy-foreground" /></div><div className="text-xs"><div className="font-bold text-navy">{t}</div><div className="text-navy">{a}</div><div className="text-muted-foreground">{b}</div></div></div>
             ))}
           </div>
