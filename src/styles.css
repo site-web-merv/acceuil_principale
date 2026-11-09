@@ -72,10 +72,26 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-brand-green: var(--brand-green);
+  --color-green-soft: var(--green-soft);
+  --color-blue-soft: var(--blue-soft);
+  --color-star: var(--star);
+}
+
 :root {
-  --radius: 0.625rem;
+  --navy: oklch(0.32 0.11 260);
+  --navy-foreground: oklch(0.98 0.005 250);
+  --brand-green: oklch(0.5 0.14 150);
+  --green-soft: oklch(0.95 0.04 150);
+  --blue-soft: oklch(0.95 0.03 250);
+  --star: oklch(0.8 0.16 80);
+  --radius: 0.75rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.25 0.08 262);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
