@@ -92,8 +92,9 @@ function Index() {
             </div>
           </div>
           <div className="relative min-h-[420px]">
-            <img src={clinic} alt="Façade de la Polyclinique La Solumed à Yaoundé" className="absolute inset-0 h-full w-full object-cover object-center" />
-            <div className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-blue-soft to-transparent" />
+            <img src={clinic} alt="Façade de la Polyclinique La Solumed à Yaoundé" className="absolute inset-0 h-full w-full object-cover object-left" />
+            <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-blue-soft/70 to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-2/5 bg-gradient-to-l from-blue-soft via-blue-soft/40 to-transparent" />
             <div className="absolute right-6 top-6 flex items-center gap-2 rounded-xl bg-background/90 px-3 py-2 text-xs text-navy shadow"><Heart className="h-4 w-4 text-brand-green" />Des vies en meilleure santé<br />chaque jour</div>
             <div className="absolute left-6 top-1/2 w-56 -translate-y-1/2 space-y-4 rounded-2xl bg-background/90 p-4 shadow-xl backdrop-blur">
               {[{ i: Stethoscope, a: "14", b: "spécialités médicales" }, { i: Clock, a: "Urgences", b: "24h/24 et 7j/7" }, { i: Syringe, a: "Vaccins", b: "gratuits pour les enfants (0 - 5 ans)" }].map(({ i: I, a, b }) => (
