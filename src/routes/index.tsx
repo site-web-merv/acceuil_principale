@@ -10,7 +10,7 @@ import doctor from "@/assets/doctor.jpg";
 import dentist from "@/assets/dentist.jpg";
 import radiology from "@/assets/radiology.jpg";
 import vaccine from "@/assets/vaccine.jpg";
-import directionMap from "@/assets/solumed-direction-map.jpg.asset.json";
+import directionMap from "@/assets/solumed-direction-map.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
