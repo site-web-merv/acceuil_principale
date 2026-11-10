@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Phone, CalendarDays, ArrowRight, PlusCircle, Stethoscope, Baby, HeartPulse, ScanLine, Syringe,
   Clock, MapPin, MessageCircle, ChevronLeft, ChevronRight, Users, Monitor, HeartHandshake,
-  Heart, Star, Mail, Maximize2, Facebook, Instagram, Linkedin, Youtube, User, Lock, ShieldCheck,
+  Heart, Star, Mail, Facebook, Instagram, Linkedin, Youtube, User, Lock, ShieldCheck,
   UserCheck, Ear, Zap, Home, BarChart3, Smile, Venus,
 } from "lucide-react";
 import clinic from "@/assets/clinic.jpg";
@@ -10,6 +10,7 @@ import doctor from "@/assets/doctor.jpg";
 import dentist from "@/assets/dentist.jpg";
 import radiology from "@/assets/radiology.jpg";
 import vaccine from "@/assets/vaccine.jpg";
+import directionMap from "@/assets/solumed-direction-map.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -228,9 +229,8 @@ function Index() {
           <a href="https://maps.google.com/?q=Carrefour+TKC+Biyem-Assi+Yaoundé" target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-lg border border-navy/30 px-4 py-2 text-xs font-semibold text-navy md:flex">Obtenir l'itinéraire<ArrowRight className="h-3 w-3" /></a>
         </div>
         <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr]">
-          <div className="relative h-80 overflow-hidden rounded-xl border">
-            <iframe title="Carte" className="h-full w-full" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=11.465%2C3.815%2C11.505%2C3.845&layer=mapnik&marker=3.830%2C11.485" />
-            <Maximize2 className="absolute right-3 top-3 h-8 w-8 rounded bg-background p-2 text-navy shadow" />
+          <div className="relative overflow-hidden rounded-xl border bg-background">
+            <img src={directionMap.url} alt="Plan d'accès à la Polyclinique Solumed depuis le Carrefour TKC, Biyem-Assi" loading="lazy" className="h-auto w-full" />
           </div>
           <div className="space-y-3">
             {[{ i: MapPin, t: "Adresse", a: "Carrefour TKC, Entrée Prodige", b: "100m du goudron, Biyem-Assi, Yaoundé" }, { i: Phone, t: "Téléphone", a: "+237 652 467 154 / +237 686 204 678", b: "Urgences 24h/24 — Consultations 7h00 - 20h00" }, { i: MessageCircle, t: "WhatsApp", a: "+237 686 204 678", b: "Réponse rapide garantie" }, { i: Mail, t: "Email", a: "contact@solumed.cm", b: "Nous vous répondons sous 24h" }].map(({ i: I, t, a, b }) => (
