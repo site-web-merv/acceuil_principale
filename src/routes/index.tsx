@@ -10,7 +10,7 @@ import doctor from "@/assets/doctor.jpg";
 import dentist from "@/assets/dentist.jpg";
 import radiology from "@/assets/radiology.jpg";
 import vaccine from "@/assets/vaccine.jpg";
-import directionMap from "@/assets/solumed-direction-map.jpg.asset.json";
+import directionMap from "@/assets/solumed-direction-map.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -231,6 +231,7 @@ function Index() {
         <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr]">
           <div className="relative overflow-hidden rounded-xl border bg-background">
             <img src={directionMap.url} alt="Plan d'accès à la Polyclinique Solumed depuis le Carrefour TKC, Biyem-Assi" loading="lazy" className="h-auto w-full" />
+            <a href="https://maps.app.goo.gl/uvtwHxjVvaJjNvnE6?g_st=aw" target="_blank" rel="noreferrer" aria-label="Ouvrir la Polyclinique La Solumed dans Google Maps" title="Ouvrir dans Google Maps" className="absolute cursor-pointer" style={{ left: "30.9%", top: "77.6%", width: "8.7%", height: "14.1%" }} />
           </div>
           <div className="space-y-3">
             {[{ i: MapPin, t: "Adresse", a: "Carrefour TKC, Entrée Prodige", b: "100m du goudron, Biyem-Assi, Yaoundé" }, { i: Phone, t: "Téléphone", a: "+237 652 467 154 / +237 686 204 678", b: "Urgences 24h/24 — Consultations 7h00 - 20h00" }, { i: MessageCircle, t: "WhatsApp", a: "+237 686 204 678", b: "Réponse rapide garantie" }, { i: Mail, t: "Email", a: "contact@solumed.cm", b: "Nous vous répondons sous 24h" }].map(({ i: I, t, a, b }) => (
