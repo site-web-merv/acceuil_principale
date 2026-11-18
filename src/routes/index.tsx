@@ -1,15 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Phone, CalendarDays, ArrowRight, PlusCircle, Stethoscope, Baby, HeartPulse, ScanLine, Syringe,
+  Phone, CalendarDays, ArrowRight, PlusCircle, Stethoscope, Baby, Syringe,
   Clock, MapPin, MessageCircle, ChevronLeft, ChevronRight, Users, Monitor, HeartHandshake,
-  Heart, Star, Mail, Facebook, Instagram, Linkedin, Youtube, User, Lock, ShieldCheck,
-  UserCheck, Ear, Zap, Home, BarChart3, Smile, Venus,
+  Heart, Star, Mail, Maximize2, User, Lock, ShieldCheck,Facebook, Instagram, Linkedin, Youtube,
+  UserCheck, Ear, Zap, Home, BarChart3, Smile, Bone, FlaskConical, CheckCircle2,
 } from "lucide-react";
 import clinic from "@/assets/clinic.jpg";
 import doctor from "@/assets/doctor.jpg";
 import dentist from "@/assets/dentist.jpg";
 import radiology from "@/assets/radiology.jpg";
 import vaccine from "@/assets/vaccine.jpg";
+import nurse from "@/assets/nurse.jpg";
+import { Navbar } from "@/components/navbar";
 import directionMap from "@/assets/solumed-direction-map.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -26,6 +28,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const Eyebrow = ({ children, light }: { children: React.ReactNode; light?: boolean }) => (
+  <p className={`text-[11px] font-semibold tracking-[0.2em] uppercase ${light ? "text-navy-foreground/70" : "text-muted-foreground"}`}>{children}</p>
+);
+
+
+
 const Logo = ({ light }: { light?: boolean }) => (
   <div className="flex items-center gap-2">
     <div className={`grid h-10 w-10 place-items-center rounded-full border-2 ${light ? "border-navy-foreground" : "border-brand-green"}`}>
@@ -38,15 +46,15 @@ const Logo = ({ light }: { light?: boolean }) => (
     </div>
   </div>
 );
-
 const specialties = [
-  { icon: Stethoscope, name: "Médecine générale" },
-  { icon: Baby, name: "Pédiatrie" },
-  { icon: Venus, name: "Gynécologie Obstétrique" },
-  { icon: HeartPulse, name: "Cardiologie" },
-  { icon: ScanLine, name: "Radiologie Imagerie médicale" },
-  { icon: Smile, name: "Dentisterie" },
+  { icon: Stethoscope, t: "Médecine générale", d: "Suivi médical pour tous les âges.", slug: "medecine-generale" },
+  { icon: Heart, t: "Cardiologie", d: "Un cœur en bonne santé, une vie meilleure.", slug: "cardiologie" },
+  { icon: Users, t: "Gynécologie - Obstétrique", d: "Accompagner chaque étape de la vie." , slug: "gynecologie"},
+  { icon: Baby, t: "Pédiatrie", d: "Des soins tout en douceur." , slug: "pediatrie"},
+  { icon: Bone, t: "Orthopédie", d: "Retrouver votre mobilité." ,slug: "chirurgie-orthopedique"},
+  { icon: FlaskConical, t: "Analyses médicales", d: "Des résultats fiables, rapidement." },
 ];
+
 
 const reviews = [
   { name: "Marie N.", text: "« Une équipe exceptionnelle et à l'écoute. J'ai été très bien prise en charge pendant ma grossesse. Merci Solumed ! »" },
@@ -57,28 +65,13 @@ const reviews = [
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
-      {/* NAV */}
-      <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-          <Logo />
-          <nav className="hidden items-center gap-7 text-sm font-medium text-navy lg:flex">
-            <a className="border-b-2 border-brand-green pb-1 text-brand-green">Accueil</a>
-            {["Nos spécialités", "Nos services", "À propos", "Actualités", "Contact"].map((l) => <a key={l} className="hover:text-brand-green">{l}</a>)}
-          </nav>
-          <div className="flex items-center gap-5">
-            <div className="hidden items-center gap-2 md:flex">
-              <Phone className="h-4 w-4 text-navy" />
-              <div className="leading-tight"><div className="text-sm font-bold text-navy">+237 652 467 154</div><div className="text-[10px] text-muted-foreground">Lun - Dim 24h/24</div></div>
-            </div>
-            <a href="#rdv" className="flex items-center gap-2 rounded-lg bg-navy px-5 py-3 text-sm font-semibold text-navy-foreground"><CalendarDays className="h-4 w-4" />Prendre RDV</a>
-          </div>
-        </div>
-      </header>
-
+      <Navbar />
       {/* HERO */}
       <section className="relative overflow-hidden bg-blue-soft">
-        <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
-          <div className="relative z-10 px-6 py-14 lg:py-20">
+        {/* Plus de max-w ici : la grille prend toute la largeur de l'écran */}
+        <div className="grid lg:grid-cols-2 lg:items-center">
+          {/* Colonne gauche : on recrée l'alignement de max-w-7xl avec du padding */}
+          <div className="relative z-10 px-6 py-14 lg:py-20 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-10">
             <p className="text-xs font-bold tracking-wider text-brand-green">POLYCLINIQUE SOLUMED — YAOUNDÉ</p>
             <h1 className="mt-4 text-5xl font-extrabold leading-[1.05] text-navy md:text-6xl">Votre santé,<br />notre <span className="text-brand-green">priorité.</span></h1>
             <p className="mt-5 max-w-md text-lg text-navy">Des soins de qualité, une équipe engagée à vos côtés, chaque jour.</p>
@@ -92,10 +85,14 @@ function Index() {
               ))}
             </div>
           </div>
-          <div className="relative min-h-[420px]">
-            <img src={clinic} alt="Façade de la Polyclinique La Solumed à Yaoundé" className="absolute inset-0 h-full w-full object-cover object-left" />
-            <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-blue-soft/70 to-transparent" />
-            <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-blue-soft/80 to-transparent" />
+
+          {/* Colonne droite : l'image décide de la hauteur, donc elle est affichée en entier */}
+          <div className="relative">
+            <img
+              src={clinic}
+              alt="Façade de la Polyclinique La Solumed à Yaoundé"
+              className="block h-auto w-full"
+            />
             <div className="absolute right-6 top-6 flex items-center gap-2 rounded-xl bg-background/90 px-3 py-2 text-xs text-navy shadow"><Heart className="h-4 w-4 text-brand-green" />Des vies en meilleure santé<br />chaque jour</div>
             <div className="absolute left-6 top-1/2 w-56 -translate-y-1/2 space-y-4 rounded-2xl bg-background/90 p-4 shadow-xl backdrop-blur">
               {[{ i: Stethoscope, a: "14", b: "spécialités médicales" }, { i: Clock, a: "Urgences", b: "24h/24 et 7j/7" }, { i: Syringe, a: "Vaccins", b: "gratuits pour les enfants (0 - 5 ans)" }].map(({ i: I, a, b }) => (
@@ -120,21 +117,20 @@ function Index() {
       </div>
 
       {/* SPECIALTIES */}
-      <section className="mx-auto max-w-7xl px-6 py-14">
+
+            <section id="specialites" className="mx-auto max-w-7xl px-6 py-14">
         <div className="flex items-end justify-between">
-          <div><h2 className="text-3xl font-extrabold text-navy">Nos Spécialités</h2><p className="mt-1 text-sm text-muted-foreground">Une prise en charge complète pour toute la famille, avec des spécialistes à votre écoute.</p></div>
-          <a className="hidden items-center gap-2 rounded-lg border border-navy/30 px-4 py-2 text-xs font-semibold text-navy md:flex">Voir toutes les spécialités<ArrowRight className="h-3 w-3" /></a>
+          <div><Eyebrow>Des soins pour toute la famille</Eyebrow><h2 className="mt-2 text-3xl font-bold text-navy">Nos Spécialités</h2></div>
+          <a href="#" className="hidden md:block text-xs text-primary underline">Des professionnels à votre écoute pour un meilleur demain.</a>
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-          {specialties.map(({ icon: I, name }) => (
-            <div key={name} className="flex flex-col items-center rounded-xl border bg-card p-6 text-center shadow-sm">
-              <I className="h-9 w-9 text-brand-green" />
-              <div className="mt-4 min-h-10 font-bold text-navy">{name}</div>
-              <a className="mt-4 flex items-center gap-1 text-xs font-semibold text-navy">En savoir plus<ArrowRight className="h-3 w-3" /></a>
-            </div>
-          ))}
+        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {specialties.map((s) => <SpecialtyCard key={s.t} {...s} />)}
+        </div>
+        <div className="mt-8 text-center">
+          <a href="#" className="inline-flex items-center gap-2 rounded-md border-2 border-primary text-primary px-6 py-3 text-sm font-semibold">Voir toutes les spécialités <ArrowRight className="h-4 w-4" /></a>
         </div>
       </section>
+
 
       {/* OFFERS */}
       <section className="mx-auto max-w-7xl px-6 pb-14">
@@ -159,7 +155,38 @@ function Index() {
       </section>
 
       {/* RDV */}
-      <section id="rdv" className="bg-green-soft">
+            <section id="rdv" className="bg-mint/60">
+        <div className="mx-auto max-w-7xl px-6 py-14 grid lg:grid-cols-[1fr_1.6fr_0.8fr] gap-8 items-center">
+          <div>
+            <Eyebrow>Prenez rendez-vous</Eyebrow>
+            <h2 className="mt-2 text-3xl font-bold text-navy">Un rendez-vous en quelques clics</h2>
+            <p className="mt-3 text-sm text-muted-foreground">Gagnez du temps et réservez votre consultation en ligne.</p>
+            <div className="mt-6 flex gap-4">
+              <CalendarDays className="h-10 w-10 text-brand-green" strokeWidth={1.5} />
+              <ul className="space-y-2 text-sm text-navy">
+                {["Rapide et simple", "Confirmation immédiate", "Choix du spécialiste", "Modification possible"].map((x) => (
+                  <li key={x} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 fill-brand-green text-primary-foreground" /> {x}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <form onSubmit={(e) => { e.preventDefault(); alert("Votre demande de rendez-vous a été envoyée !"); }} className="rounded-xl bg-card shadow-lg p-6 grid sm:grid-cols-2 gap-4">
+            <Field label="Nom complet"><input required placeholder="Votre nom complet" className="input" /></Field>
+            <Field label="Numéro de téléphone"><input required placeholder="+237 6XX XX XX XX" className="input" /></Field>
+            <Field label="Spécialité">
+              <select required className="input" defaultValue=""><option value="" disabled>Choisissez une spécialité</option>{specialties.map((s) => <option key={s.t}>{s.t}</option>)}</select>
+            </Field>
+            <Field label="Date souhaitée"><input required type="date" className="input" /></Field>
+            <button className="sm:col-span-2 inline-flex justify-center items-center gap-2 rounded-md bg-primary text-primary-foreground py-3 text-sm font-semibold"><CalendarDays className="h-4 w-4" /> Prendre rendez-vous</button>
+            <p className="sm:col-span-2 text-center text-xs text-muted-foreground flex items-center justify-center gap-1"><Lock className="h-3 w-3" /> Vos informations sont sécurisées et confidentielles.</p>
+          </form>
+          <div className="relative hidden lg:block">
+            <img src={nurse} alt="Infirmière" loading="lazy" width={768} height={1024} className="h-72 w-full object-cover rounded-xl" />
+            <div className="absolute -bottom-4 right-0 rounded-lg bg-card shadow-lg px-3 py-2 text-xs flex items-center gap-2 text-navy"><Heart className="h-4 w-4 text-primary" /><span><b>Votre santé</b><br />entre de bonnes mains</span></div>
+          </div>
+        </div>
+      </section>
+      {/* <section id="rdv" className="bg-green-soft">
         <div className="mx-auto max-w-7xl px-6 py-12">
           <h2 className="text-3xl font-extrabold text-navy">Prenez rendez-vous en ligne</h2>
           <p className="mt-1 text-sm text-muted-foreground">Un service <b className="text-navy">simple</b>, rapide et sécurisé.</p>
@@ -179,7 +206,7 @@ function Index() {
             <p className="flex items-center justify-center gap-1 text-[10px] text-muted-foreground md:col-span-5"><Lock className="h-3 w-3" />Vos informations sont sécurisées et confidentielles.</p>
           </form>
         </div>
-      </section>
+      </section> */}
 
       {/* ABOUT */}
       <section className="bg-navy text-navy-foreground">
@@ -266,4 +293,44 @@ function Index() {
       </footer>
     </div>
   );
+}
+
+
+function SpecialtyCard({ icon: I, t, d, slug }: { icon: typeof Clock; t: string; d: string; slug?: string }) {
+  const cls = "flex gap-5 rounded-xl border bg-card p-6 hover:shadow-lg transition-shadow";
+  const inner = (
+    <>
+      <I className="h-10 w-10 text-brand-green shrink-0" strokeWidth={1.5} />
+      <div>
+        <h3 className="font-bold text-navy">{t}</h3>
+        <p className="text-sm text-muted-foreground">{d}</p>
+        {slug ? (
+          <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary underline">En savoir plus <ArrowRight className="h-4 w-4" /></span>
+        ) : (
+          <a href="#" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary underline">En savoir plus <ArrowRight className="h-4 w-4" /></a>
+        )}
+      </div>
+    </>
+  );
+
+  return slug
+    ? <Link to="/specialites/$slug" params={{ slug }} aria-label={`Voir la page ${t}`} className={cls}>{inner}</Link>
+    : <div className={cls}>{inner}</div>;
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return <label className="text-xs font-semibold text-navy space-y-1 block">{label} <span className="text-destructive">*</span>{children}</label>;
+}
+
+function Contact({ icon: I, t, l }: { icon: typeof Clock; t: string; l: string[] }) {
+  return (
+    <div className="rounded-lg border bg-card p-4 flex gap-3">
+      <I className="h-5 w-5 text-primary shrink-0" />
+      <div className="text-xs"><b className="text-navy">{t}</b>{l.map((x) => <p key={x} className="text-muted-foreground">{x}</p>)}</div>
+    </div>
+  );
+}
+
+function FootCol({ t, l }: { t: string; l: string[] }) {
+  return <div><b>{t}</b><ul className="mt-3 space-y-1.5 text-xs text-navy-foreground/70">{l.map((x) => <li key={x}><a href="#">{x}</a></li>)}</ul></div>;
 }

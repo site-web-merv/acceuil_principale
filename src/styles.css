@@ -1,33 +1,14 @@
 /*
  * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
- * - Keep every @import in this top block, above @theme and the rest of the file. Install an
- *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
- *   build resolves @import from the filesystem. Load those with a <link> in the head() of
- *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ * - Keep every @import in this top block, above @theme and the rest of the file.
+ * - Never @import a remote URL (web fonts, CDN CSS): load those with a <link> in the head()
+ *   of src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
  */
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The design lives in this file: oklch color tokens on the shadcn variables
- * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
- * new tokens as needed, font tokens, and custom styles and animations.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -37,6 +18,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -70,25 +52,49 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-}
 
-@theme inline {
+  /* Marque Solumed */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
   --color-brand-green: var(--brand-green);
   --color-green-soft: var(--green-soft);
   --color-blue-soft: var(--blue-soft);
+  --color-soft-blue: var(--soft-blue);
   --color-star: var(--star);
+
+  /* Alias utilisés par les pages spécialités (bg-mint, bg-soft) */
+  --color-mint: var(--green-soft);
+  --color-soft: var(--blue-soft);
+
+  /* Ajouts venant du CSS n°2 */
+  --color-navy-deep: var(--navy-deep);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-surface: var(--surface);
+  --color-rose: var(--rose);
 }
 
 :root {
+  /* Marque Solumed */
   --navy: oklch(0.32 0.11 260);
   --navy-foreground: oklch(0.98 0.005 250);
   --brand-green: oklch(0.5 0.14 150);
   --green-soft: oklch(0.95 0.04 150);
   --blue-soft: oklch(0.95 0.03 250);
+  --soft-blue: oklch(0.96 0.02 250);
   --star: oklch(0.8 0.16 80);
+
+  /* Ajouts venant du CSS n°2 */
+  --navy-deep: oklch(0.24 0.08 258);
+  --brand: oklch(0.5 0.14 150);
+  --brand-foreground: oklch(1 0 0);
+  --surface: oklch(0.97 0.008 250);
+  --rose: oklch(0.65 0.2 355);
+  --gradient-hero: linear-gradient(90deg, oklch(0.24 0.08 258 / 0.95) 0%, oklch(0.3 0.1 258 / 0.75) 45%, oklch(0.3 0.1 258 / 0.1) 100%);
+  --gradient-navy: linear-gradient(135deg, oklch(0.22 0.08 258), oklch(0.32 0.1 258));
+  --shadow-card: 0 4px 18px -8px oklch(0.25 0.06 258 / 0.18);
+
   --radius: 0.75rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.25 0.08 262);
@@ -168,4 +174,55 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  html {
+    font-family: var(--font-sans);
+  }
+}
+
+/* ---------- Utilitaires (venant du CSS n°2) ---------- */
+
+@utility bg-hero-overlay { background-image: var(--gradient-hero); }
+@utility bg-navy-gradient { background-image: var(--gradient-navy); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+
+/* ---------- Styles personnalisés (spécialités / services) ---------- */
+
+html { scroll-behavior: smooth; }
+
+.service-link {
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+.service-link:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand-green);
+  background: var(--soft-blue);
+}
+.service-link:focus-visible {
+  outline: 2px solid var(--brand-green);
+  outline-offset: 4px;
+}
+
+.specialty-enter { animation: specialty-enter 650ms ease both; }
+.specialty-photo { transition: transform 700ms ease; }
+.group:hover .specialty-photo { transform: scale(1.04); }
+.specialty-hero-shade {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--navy) 94%, transparent),
+    color-mix(in oklch, var(--navy) 65%, transparent) 48%,
+    transparent
+  );
+}
+
+@keyframes specialty-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .specialty-enter { animation: none; }
+  .service-link, .specialty-photo { transition: none; }
+  .service-link:hover, .group:hover .specialty-photo { transform: none; }
 }

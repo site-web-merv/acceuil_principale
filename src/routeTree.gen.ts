@@ -10,33 +10,246 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as ActualitesRouteImport } from './routes/actualites'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SpecialitesIndexRouteImport } from './routes/specialites.index'
+import { Route as SpecialitesSlugRouteImport } from './routes/specialites.$slug'
+import { Route as SpecialitesChirurgieRouteImport } from './routes/specialites.chirurgie'
+import { Route as SpecialitesChirurgieOrthopediqueRouteImport } from './routes/specialites.chirurgie-orthopedique'
+import { Route as SpecialitesDentisterieRouteImport } from './routes/specialites.dentisterie'
+import { Route as SpecialitesGynecologieRouteImport } from './routes/specialites.gynecologie'
+import { Route as SpecialitesLaboratoireRouteImport } from './routes/specialites.laboratoire'
+import { Route as SpecialitesPediatrieRouteImport } from './routes/specialites.pediatrie'
+import { Route as SpecialitesPharmacieRouteImport } from './routes/specialites.pharmacie'
+import { Route as SpecialitesRadiologieRouteImport } from './routes/specialites.radiologie'
+import { Route as SpecialitesRhumatologieRouteImport } from './routes/specialites.rhumatologie'
+import { Route as SpecialitesUrologieRouteImport } from './routes/specialites.urologie'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActualitesRoute = ActualitesRouteImport.update({
+  id: '/actualites',
+  path: '/actualites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesIndexRoute = SpecialitesIndexRouteImport.update({
+  id: '/specialites/',
+  path: '/specialites/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesSlugRoute = SpecialitesSlugRouteImport.update({
+  id: '/specialites/$slug',
+  path: '/specialites/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesChirurgieRoute = SpecialitesChirurgieRouteImport.update({
+  id: '/specialites/chirurgie',
+  path: '/specialites/chirurgie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesChirurgieOrthopediqueRoute =
+  SpecialitesChirurgieOrthopediqueRouteImport.update({
+    id: '/specialites/chirurgie-orthopedique',
+    path: '/specialites/chirurgie-orthopedique',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SpecialitesDentisterieRoute = SpecialitesDentisterieRouteImport.update({
+  id: '/specialites/dentisterie',
+  path: '/specialites/dentisterie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesGynecologieRoute = SpecialitesGynecologieRouteImport.update({
+  id: '/specialites/gynecologie',
+  path: '/specialites/gynecologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesLaboratoireRoute = SpecialitesLaboratoireRouteImport.update({
+  id: '/specialites/laboratoire',
+  path: '/specialites/laboratoire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesPediatrieRoute = SpecialitesPediatrieRouteImport.update({
+  id: '/specialites/pediatrie',
+  path: '/specialites/pediatrie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesPharmacieRoute = SpecialitesPharmacieRouteImport.update({
+  id: '/specialites/pharmacie',
+  path: '/specialites/pharmacie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesRadiologieRoute = SpecialitesRadiologieRouteImport.update({
+  id: '/specialites/radiologie',
+  path: '/specialites/radiologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesRhumatologieRoute = SpecialitesRhumatologieRouteImport.update({
+  id: '/specialites/rhumatologie',
+  path: '/specialites/rhumatologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialitesUrologieRoute = SpecialitesUrologieRouteImport.update({
+  id: '/specialites/urologie',
+  path: '/specialites/urologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
+  '/specialites/$slug': typeof SpecialitesSlugRoute
+  '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
+  '/specialites/chirurgie-orthopedique': typeof SpecialitesChirurgieOrthopediqueRoute
+  '/specialites/dentisterie': typeof SpecialitesDentisterieRoute
+  '/specialites/gynecologie': typeof SpecialitesGynecologieRoute
+  '/specialites/laboratoire': typeof SpecialitesLaboratoireRoute
+  '/specialites/pediatrie': typeof SpecialitesPediatrieRoute
+  '/specialites/pharmacie': typeof SpecialitesPharmacieRoute
+  '/specialites/radiologie': typeof SpecialitesRadiologieRoute
+  '/specialites/rhumatologie': typeof SpecialitesRhumatologieRoute
+  '/specialites/urologie': typeof SpecialitesUrologieRoute
+  '/specialites/': typeof SpecialitesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
+  '/specialites/$slug': typeof SpecialitesSlugRoute
+  '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
+  '/specialites/chirurgie-orthopedique': typeof SpecialitesChirurgieOrthopediqueRoute
+  '/specialites/dentisterie': typeof SpecialitesDentisterieRoute
+  '/specialites/gynecologie': typeof SpecialitesGynecologieRoute
+  '/specialites/laboratoire': typeof SpecialitesLaboratoireRoute
+  '/specialites/pediatrie': typeof SpecialitesPediatrieRoute
+  '/specialites/pharmacie': typeof SpecialitesPharmacieRoute
+  '/specialites/radiologie': typeof SpecialitesRadiologieRoute
+  '/specialites/rhumatologie': typeof SpecialitesRhumatologieRoute
+  '/specialites/urologie': typeof SpecialitesUrologieRoute
+  '/specialites': typeof SpecialitesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/actualites': typeof ActualitesRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
+  '/specialites/$slug': typeof SpecialitesSlugRoute
+  '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
+  '/specialites/chirurgie-orthopedique': typeof SpecialitesChirurgieOrthopediqueRoute
+  '/specialites/dentisterie': typeof SpecialitesDentisterieRoute
+  '/specialites/gynecologie': typeof SpecialitesGynecologieRoute
+  '/specialites/laboratoire': typeof SpecialitesLaboratoireRoute
+  '/specialites/pediatrie': typeof SpecialitesPediatrieRoute
+  '/specialites/pharmacie': typeof SpecialitesPharmacieRoute
+  '/specialites/radiologie': typeof SpecialitesRadiologieRoute
+  '/specialites/rhumatologie': typeof SpecialitesRhumatologieRoute
+  '/specialites/urologie': typeof SpecialitesUrologieRoute
+  '/specialites/': typeof SpecialitesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/actualites'
+    | '/contact'
+    | '/services'
+    | '/specialites/$slug'
+    | '/specialites/chirurgie'
+    | '/specialites/chirurgie-orthopedique'
+    | '/specialites/dentisterie'
+    | '/specialites/gynecologie'
+    | '/specialites/laboratoire'
+    | '/specialites/pediatrie'
+    | '/specialites/pharmacie'
+    | '/specialites/radiologie'
+    | '/specialites/rhumatologie'
+    | '/specialites/urologie'
+    | '/specialites/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/actualites'
+    | '/contact'
+    | '/services'
+    | '/specialites/$slug'
+    | '/specialites/chirurgie'
+    | '/specialites/chirurgie-orthopedique'
+    | '/specialites/dentisterie'
+    | '/specialites/gynecologie'
+    | '/specialites/laboratoire'
+    | '/specialites/pediatrie'
+    | '/specialites/pharmacie'
+    | '/specialites/radiologie'
+    | '/specialites/rhumatologie'
+    | '/specialites/urologie'
+    | '/specialites'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-propos'
+    | '/actualites'
+    | '/contact'
+    | '/services'
+    | '/specialites/$slug'
+    | '/specialites/chirurgie'
+    | '/specialites/chirurgie-orthopedique'
+    | '/specialites/dentisterie'
+    | '/specialites/gynecologie'
+    | '/specialites/laboratoire'
+    | '/specialites/pediatrie'
+    | '/specialites/pharmacie'
+    | '/specialites/radiologie'
+    | '/specialites/rhumatologie'
+    | '/specialites/urologie'
+    | '/specialites/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
+  ActualitesRoute: typeof ActualitesRoute
+  ContactRoute: typeof ContactRoute
+  ServicesRoute: typeof ServicesRoute
+  SpecialitesSlugRoute: typeof SpecialitesSlugRoute
+  SpecialitesChirurgieRoute: typeof SpecialitesChirurgieRoute
+  SpecialitesChirurgieOrthopediqueRoute: typeof SpecialitesChirurgieOrthopediqueRoute
+  SpecialitesDentisterieRoute: typeof SpecialitesDentisterieRoute
+  SpecialitesGynecologieRoute: typeof SpecialitesGynecologieRoute
+  SpecialitesLaboratoireRoute: typeof SpecialitesLaboratoireRoute
+  SpecialitesPediatrieRoute: typeof SpecialitesPediatrieRoute
+  SpecialitesPharmacieRoute: typeof SpecialitesPharmacieRoute
+  SpecialitesRadiologieRoute: typeof SpecialitesRadiologieRoute
+  SpecialitesRhumatologieRoute: typeof SpecialitesRhumatologieRoute
+  SpecialitesUrologieRoute: typeof SpecialitesUrologieRoute
+  SpecialitesIndexRoute: typeof SpecialitesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +261,139 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/actualites': {
+      id: '/actualites'
+      path: '/actualites'
+      fullPath: '/actualites'
+      preLoaderRoute: typeof ActualitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/': {
+      id: '/specialites/'
+      path: '/specialites'
+      fullPath: '/specialites/'
+      preLoaderRoute: typeof SpecialitesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/$slug': {
+      id: '/specialites/$slug'
+      path: '/specialites/$slug'
+      fullPath: '/specialites/$slug'
+      preLoaderRoute: typeof SpecialitesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/chirurgie': {
+      id: '/specialites/chirurgie'
+      path: '/specialites/chirurgie'
+      fullPath: '/specialites/chirurgie'
+      preLoaderRoute: typeof SpecialitesChirurgieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/chirurgie-orthopedique': {
+      id: '/specialites/chirurgie-orthopedique'
+      path: '/specialites/chirurgie-orthopedique'
+      fullPath: '/specialites/chirurgie-orthopedique'
+      preLoaderRoute: typeof SpecialitesChirurgieOrthopediqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/dentisterie': {
+      id: '/specialites/dentisterie'
+      path: '/specialites/dentisterie'
+      fullPath: '/specialites/dentisterie'
+      preLoaderRoute: typeof SpecialitesDentisterieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/gynecologie': {
+      id: '/specialites/gynecologie'
+      path: '/specialites/gynecologie'
+      fullPath: '/specialites/gynecologie'
+      preLoaderRoute: typeof SpecialitesGynecologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/laboratoire': {
+      id: '/specialites/laboratoire'
+      path: '/specialites/laboratoire'
+      fullPath: '/specialites/laboratoire'
+      preLoaderRoute: typeof SpecialitesLaboratoireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/pediatrie': {
+      id: '/specialites/pediatrie'
+      path: '/specialites/pediatrie'
+      fullPath: '/specialites/pediatrie'
+      preLoaderRoute: typeof SpecialitesPediatrieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/pharmacie': {
+      id: '/specialites/pharmacie'
+      path: '/specialites/pharmacie'
+      fullPath: '/specialites/pharmacie'
+      preLoaderRoute: typeof SpecialitesPharmacieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/radiologie': {
+      id: '/specialites/radiologie'
+      path: '/specialites/radiologie'
+      fullPath: '/specialites/radiologie'
+      preLoaderRoute: typeof SpecialitesRadiologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/rhumatologie': {
+      id: '/specialites/rhumatologie'
+      path: '/specialites/rhumatologie'
+      fullPath: '/specialites/rhumatologie'
+      preLoaderRoute: typeof SpecialitesRhumatologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialites/urologie': {
+      id: '/specialites/urologie'
+      path: '/specialites/urologie'
+      fullPath: '/specialites/urologie'
+      preLoaderRoute: typeof SpecialitesUrologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
+  ActualitesRoute: ActualitesRoute,
+  ContactRoute: ContactRoute,
+  ServicesRoute: ServicesRoute,
+  SpecialitesSlugRoute: SpecialitesSlugRoute,
+  SpecialitesChirurgieRoute: SpecialitesChirurgieRoute,
+  SpecialitesChirurgieOrthopediqueRoute: SpecialitesChirurgieOrthopediqueRoute,
+  SpecialitesDentisterieRoute: SpecialitesDentisterieRoute,
+  SpecialitesGynecologieRoute: SpecialitesGynecologieRoute,
+  SpecialitesLaboratoireRoute: SpecialitesLaboratoireRoute,
+  SpecialitesPediatrieRoute: SpecialitesPediatrieRoute,
+  SpecialitesPharmacieRoute: SpecialitesPharmacieRoute,
+  SpecialitesRadiologieRoute: SpecialitesRadiologieRoute,
+  SpecialitesRhumatologieRoute: SpecialitesRhumatologieRoute,
+  SpecialitesUrologieRoute: SpecialitesUrologieRoute,
+  SpecialitesIndexRoute: SpecialitesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
