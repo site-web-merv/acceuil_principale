@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, CalendarDays, PlusCircle, Home, Stethoscope, HeartPulse, Info, Mail } from "lucide-react";
+import { Phone, CalendarDays, PlusCircle, Home, Stethoscope, Newspaper, Info, Mail } from "lucide-react";
 
 const Logo = ({ light }: { light?: boolean }) => (
   <Link to="/" className="flex items-center gap-2">
@@ -26,7 +26,7 @@ const links = [
 const mobileLinks = [
   { label: "Accueil", to: "/", icon: Home },
   { label: "Spécialités", to: "/specialites", icon: Stethoscope },
-  { label: "Services", to: "/services", icon: HeartPulse },
+  { label: "Actualités", to: "/actualites", icon: Newspaper },
   { label: "À propos", to: "/a-propos", icon: Info },
   { label: "Contact", to: "/contact", icon: Mail },
 ] as const;
