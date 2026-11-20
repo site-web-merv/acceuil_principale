@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as NosEquipementsRouteImport } from './routes/nos-equipements'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SpecialitesIndexRouteImport } from './routes/specialites.index'
 import { Route as SpecialitesSlugRouteImport } from './routes/specialites.$slug'
@@ -45,6 +46,11 @@ const ActualitesRoute = ActualitesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NosEquipementsRoute = NosEquipementsRouteImport.update({
+  id: '/nos-equipements',
+  path: '/nos-equipements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/a-propos': typeof AProposRoute
   '/actualites': typeof ActualitesRoute
   '/contact': typeof ContactRoute
+  '/nos-equipements': typeof NosEquipementsRoute
   '/services': typeof ServicesRoute
   '/specialites/$slug': typeof SpecialitesSlugRoute
   '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/a-propos': typeof AProposRoute
   '/actualites': typeof ActualitesRoute
   '/contact': typeof ContactRoute
+  '/nos-equipements': typeof NosEquipementsRoute
   '/services': typeof ServicesRoute
   '/specialites/$slug': typeof SpecialitesSlugRoute
   '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/a-propos': typeof AProposRoute
   '/actualites': typeof ActualitesRoute
   '/contact': typeof ContactRoute
+  '/nos-equipements': typeof NosEquipementsRoute
   '/services': typeof ServicesRoute
   '/specialites/$slug': typeof SpecialitesSlugRoute
   '/specialites/chirurgie': typeof SpecialitesChirurgieRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/actualites'
     | '/contact'
+    | '/nos-equipements'
     | '/services'
     | '/specialites/$slug'
     | '/specialites/chirurgie'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/actualites'
     | '/contact'
+    | '/nos-equipements'
     | '/services'
     | '/specialites/$slug'
     | '/specialites/chirurgie'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/actualites'
     | '/contact'
+    | '/nos-equipements'
     | '/services'
     | '/specialites/$slug'
     | '/specialites/chirurgie'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   AProposRoute: typeof AProposRoute
   ActualitesRoute: typeof ActualitesRoute
   ContactRoute: typeof ContactRoute
+  NosEquipementsRoute: typeof NosEquipementsRoute
   ServicesRoute: typeof ServicesRoute
   SpecialitesSlugRoute: typeof SpecialitesSlugRoute
   SpecialitesChirurgieRoute: typeof SpecialitesChirurgieRoute
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nos-equipements': {
+      id: '/nos-equipements'
+      path: '/nos-equipements'
+      fullPath: '/nos-equipements'
+      preLoaderRoute: typeof NosEquipementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -381,6 +401,7 @@ const rootRouteChildren: RootRouteChildren = {
   AProposRoute: AProposRoute,
   ActualitesRoute: ActualitesRoute,
   ContactRoute: ContactRoute,
+  NosEquipementsRoute: NosEquipementsRoute,
   ServicesRoute: ServicesRoute,
   SpecialitesSlugRoute: SpecialitesSlugRoute,
   SpecialitesChirurgieRoute: SpecialitesChirurgieRoute,

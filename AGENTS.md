@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep equipment entries and their category IDs in `src/lib/equipments.ts` so catalog, filters and navigation stay in sync.
+- Keep site-wide motion in `SiteMotion` and the global motion tokens; use lazy Framer Motion features for interactive layout transitions to limit the bundle.

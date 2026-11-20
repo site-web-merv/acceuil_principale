@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
-import { Menu, X, ChevronDown, MapPin, Phone, Mail, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
-import { Navbar } from "../navbar";
+import { type ReactNode } from "react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Navbar, desktopLinks } from "../navbar";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -19,16 +19,7 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-const nav = [
-  { to: "/", label: "Accueil" },
-  { to: "/services", label: "Nos services", caret: true },
-  { to: "/a-propos", label: "À propos" },
-  { to: "/actualites", label: "Actualités" },
-  { to: "/contact", label: "Contact" },
-] as const;
-
 export function Header() {
-  const [open, setOpen] = useState(false);
   return (
     <Navbar/>
   );
@@ -45,7 +36,7 @@ export function Footer() {
         <div>
           <h4 className="mb-3 text-sm font-bold">Liens rapides</h4>
           <ul className="space-y-1.5 text-sm text-background/75">
-            {["Accueil", "Nos services", "À propos", "Actualités", "Contact"].map((l) => <li key={l}>{l}</li>)}
+            {desktopLinks.filter(({ to }) => to !== "/specialites").map(({ label, to }) => <li key={to}><Link to={to}>{label}</Link></li>)}
           </ul>
         </div>
         <div>

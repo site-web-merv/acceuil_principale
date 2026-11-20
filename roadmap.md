@@ -1,0 +1,3 @@
+- [ ] Ajouter la page « Nos équipements », ses filtres et ses accès.
+- [ ] Ajouter les animations globales et les effets adaptés aux pages existantes.
+- [ ] Vérifier le parcours à 375, 768 et 1440 px.
