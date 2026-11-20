@@ -15,9 +15,8 @@ const features = () => import("framer-motion").then((mod) => mod.domMax);
 const filters = [{ id: "tous", label: "Tous" }, ...equipmentCategories] as const;
 
 export const Route = createFileRoute("/nos-equipements")({
-  validateSearch: (search: Record<string, unknown>): { categorie?: EquipmentFilter } => ({
-    categorie: search.categorie === undefined ? undefined : parseEquipmentFilter(search.categorie),
-  }),
+  validateSearch: (search: Record<string, unknown>): { categorie?: EquipmentFilter } =>
+    search["categorie"] === undefined ? {} : { categorie: parseEquipmentFilter(search["categorie"]) },
   head: () => ({ meta: [
     { title }, { name: "description", content: description },
     { property: "og:title", content: title }, { property: "og:description", content: description },
@@ -39,7 +38,7 @@ function EquipmentVisual({ item }: { item: Item }) {
 
 function BookingLink({ item }: { item: Item }) {
   return <Button asChild className="h-auto min-h-10 whitespace-normal bg-navy text-navy-foreground">
-    <Link to={item.service} hash={item.service === "/specialites/dentisterie" ? "rdv" : item.service === "/specialites/pediatrie" ? undefined : "rendez-vous"}>
+    <Link to={item.service} {...(item.service === "/specialites/pediatrie" ? {} : { hash: item.service === "/specialites/dentisterie" ? "rdv" : "rendez-vous" })}>
       <CalendarDays /> Prendre rendez-vous
     </Link>
   </Button>;
@@ -99,7 +98,7 @@ function EquipmentPage() {
         <h2 className="text-2xl font-extrabold text-navy md:text-3xl">La technologie au service des soins</h2>
         <p className="mt-3 leading-7 text-muted-foreground">La Polyclinique Solumed investit dans la technologie médicale pour soutenir le travail de ses équipes. Ces équipements les aident à réaliser des examens et des soins adaptés à chaque patient. Lors de votre consultation, le personnel vous explique quel matériel sera utilisé et pourquoi.</p>
       </div>
-      <Tabs value={categorie} onValueChange={(value) => void navigate({ search: { categorie: value === "tous" ? undefined : parseEquipmentFilter(value) }, replace: true, resetScroll: false })} className="mt-8">
+      <Tabs value={categorie} onValueChange={(value) => void navigate({ search: value === "tous" ? {} : { categorie: parseEquipmentFilter(value) }, replace: true, resetScroll: false })} className="mt-8">
         <TabsList aria-label="Catégories d’équipements" className="inline-flex h-auto max-w-full flex-wrap justify-start gap-1 bg-muted p-1.5">
           {filters.map(({ id, label }) => <TabsTrigger key={id} value={id} className="min-h-10 data-[state=active]:bg-navy data-[state=active]:text-navy-foreground">{label}</TabsTrigger>)}
         </TabsList>
@@ -109,7 +108,7 @@ function EquipmentPage() {
             <div className="relative grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               <AnimatePresence initial={false} mode="popLayout">
                 {visible.map((item, index) => <m.article layout={reduced ? false : "position"} key={item.id}
-                  initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={reduced ? undefined : { opacity: 0 }}
+                  initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} {...(reduced ? {} : { exit: { opacity: 0 } })}
                   transition={{ duration: reduced ? 0 : 0.45, ease: motionEase, delay: reduced ? 0 : index * 0.08, layout: { duration: 0.38, ease: motionEase } }}
                   className="equipment-card flex flex-col overflow-hidden rounded-lg border bg-card shadow-sm"><EquipmentCard item={item} /></m.article>)}
               </AnimatePresence>
